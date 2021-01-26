@@ -1,0 +1,55 @@
+  文件描述符(file description,fd)
+    文件描述符使用数字表示
+      0：stdin 1:stdout  2:stderr
+
+      [root@mariadb ~]# ll /dev/std*
+      lrwxrwxrwx 1 root root 15 Apr  2 07:57 /dev/stderr -> /proc/self/fd/2
+      lrwxrwxrwx 1 root root 15 Apr  2 07:57 /dev/stdin -> /proc/self/fd/0
+      lrwxrwxrwx 1 root root 15 Apr  2 07:57 /dev/stdout -> /proc/self/fd/1
+
+      在Linux中，每一个进程打开时都会自动获取3个文件描述符0、1和2，分别表示标准输
+      入、标准输出、和标准错误，如果要打开其他文件，则文件描述符必须从3开始标识。对
+      于我们人为要打开的描述符，建议使用9以内的描述符，超过9的描述符可能已经被系统
+      内部分配给其他进程。
+
+  文件描述符的复制(duplicate)
+      &：[n]<&word [n]>&word   实际上类似于c++的引用,后面的word是fd，文件指针
+      理解的时候最终定位到设备
+      比如：3>&1,此时1指向标准输出流，所以fd=3也指向到/dev/stdout，后面1重定向到
+      其他设备或文件，3也不变。
+
+      [root@localhost ~]# exec 3<>anaconda-ks.cfg       #将文件的fd指定为3
+      [root@localhost ~]# ll /dev/std*
+      lrwxrwxrwx. 1 root root 15 Jan 26 02:31 /dev/stderr -> /proc/self/fd/2
+      lrwxrwxrwx. 1 root root 15 Jan 26 02:31 /dev/stdin -> /proc/self/fd/0
+      lrwxrwxrwx. 1 root root 15 Jan 26 02:31 /dev/stdout -> /proc/self/fd/1
+      [root@localhost ~]# ll /proc/self/fd
+      total 0
+      lrwx------. 1 root root 64 Jan 26 03:17 0 -> /dev/pts/1
+      lrwx------. 1 root root 64 Jan 26 03:17 1 -> /dev/pts/1
+      lrwx------. 1 root root 64 Jan 26 03:17 2 -> /dev/pts/1
+      lrwx------. 1 root root 64 Jan 26 03:17 3 -> /root/anaconda-ks.cfg
+      lr-x------. 1 root root 64 Jan 26 03:17 4 -> /proc/8340/fd
+      #此时可以看到3指向了/root/anaconda-ks.cfg的文件描述符
+      [root@localhost ~]# cat <&3 #命令运行结果为显示了/root/anaconda-ks.cfg
+                                  的文件内容
+
+  重定向顺序很重要：">file 2>&1"和"2>&1 >file"
+    >file 2>&1  的含义为：首先将标准输出流fd1重定向至file，然后错误输出流fd2
+                        复制于fd1（此时fd1已经重定向至file），所以fd2也指向file
+    2>&1 >file1 的含义为：fd2复制于fd1，此时fd2指向标准输出流/dev/stdout，然后
+                        fd1指向file1。
+
+  改变当前shell环境的重定向目标
+    进程结束后fd会自动还原，使用exec直接在shell环境下改变重定向目标，只有当shell
+    退出后才会释放。如：exec 2>&3
+
+  关闭文件描述符
+    [n]>&-
+    [n]<&-
+  打开文件
+    [n]<> filename
+  文件描述符的移动
+    文件描述符的移动表示将文件描述符1移动到描述符2上，同时关闭文件描述符1。
+    [n]>&digit- ：将文件描述符digit代表的输出文件移动到n上，并关闭digit值的描述符。
+    [n]<&digit- ：将文件描述符digit代表的输入文件移动到n上，并关闭digit值的描述符。
