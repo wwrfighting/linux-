@@ -1,0 +1,25 @@
+  用到时再详细看，再补充
+  tr - translate or delete characters
+  可以对来自标准输入的字符进行替换、压缩和删除。它可以将一组字符变成另一组字符，经常用来编写优美的单行命令，作用很强大。
+  Translate, squeeze, and/or delete characters from standard input, writing to standard output.
+  
+  语法：
+    tr [OPTION]... SET1 [SET2]
+  选项：
+  -c, -C, --complement
+         use the complement of SET1
+         取代所有不属于第一字符集的字符（这个翻译不太好理解！可译为：取SET1的补集）
+         与其他几个选项搭配使用
+  
+  -d, --delete
+         delete characters in SET1, do not translate
+         删除所有属于第一字符集的字符
+
+  -s, --squeeze-repeats
+         replace  each  input  sequence  of a repeated character that is listed in SET1 with a single occurrence of that
+         character
+         把连续重复的字符以单独一个字符表示
+
+  -t, --truncate-set1
+         first truncate SET1 to length of SET2
+         先删除第一字符集较第二字符集多出的字符
