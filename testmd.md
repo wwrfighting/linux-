@@ -23,15 +23,15 @@
 4. islessequal (3p)     - test if x is less than or equal to y
 6. islessgreater (3p)   - test if x is less than or greater than y
 #### 代码段
-    \# .bashrc
+    # .bashrc
 
-    \# User specific aliases and functions
+    # User specific aliases and functions
 
     alias rm='rm -i'
     alias cp='cp -i'
     alias mv='mv -i'
 
-    \# Source global definitions
+    # Source global definitions
     if [ -f /etc/bashrc ]; then
       . /etc/bashrc
     fi
