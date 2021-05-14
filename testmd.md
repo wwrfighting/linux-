@@ -46,6 +46,24 @@ drwxr-xr-x.  3 root root    19 Aug 10  2020 .local
 ___
 -rw-------.  1 root root  3729 Apr 10 23:01 .viminfo
 #### 链接
-行内式：
-链接为：[appinn](https://www.appinn.com/markdown/ "title")
+行内式：[appinn](https://www.appinn.com/markdown/)
+参考式：[][]
+#### 链接
+行内式：[appinn](https://www.appinn.com/markdown/ "title")
+参考式：[appinn][https://www.appinn.com/markdown/]
+#### 强调
+*强调内容*
+_强调内容_
+**强调内容**
+__强调内容__
+#### 代码
+用来标记一小段行内代码
+用`prontf()`函数
+#### 图片
+行内式：![小丸子](./u=4275424924,2201401076&fm=11&gp=0.jpg)
+### 其它
+#### 自动链接
+<http://www.baidu.com>
+#### 反斜杠
+加\转义
     
