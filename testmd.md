@@ -22,10 +22,17 @@
 2. isless (3p)          - test if x is less than y
 4. islessequal (3p)     - test if x is less than or equal to y
 6. islessgreater (3p)   - test if x is less than or greater than y
-iw (8)               - show / manipulate wireless devices and their configu...
-less (1)             - opposite of more
-less (3pm)           - perl pragma to request less of something
-lessecho (1)         - expand metacharacters
-lesskey (1)          - specify key bindings for less
-xzless (1)           - view xz or lzma compressed (text) files
-regulatory.bin (5)   - The Linux wireless regulatory data
+#### 代码段
+  # .bashrc
+
+  # User specific aliases and functions
+
+  alias rm='rm -i'
+  alias cp='cp -i'
+  alias mv='mv -i'
+
+  # Source global definitions
+  if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+  fi
+
