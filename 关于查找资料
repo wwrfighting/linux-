@@ -1,4 +1,4 @@
-  先查中文资料，看不懂再看英文资料，快速入门
+  #先查中文资料，看不懂再看英文资料，快速入门
   buildin用help
   外部命令用man，“”The full documentation”在 SEE ALSO “info coreutils 'tr invocation'”，这里会有比较详细的讲解。关于bash shell的用man bash
   在线的帮助文档：man7.org
