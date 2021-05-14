@@ -38,10 +38,10 @@
 #### 分隔线
 drwxr-xr-x.  3 root root    54 Apr 16 20:57 httpd
 -rw-r--r--.  1 root root  1733 Aug 10  2020 initial-setup-ks.cfg
----
+***
 -rw-------.  1 root root   174 May 13 21:46 .lesshst
 drwxr-xr-x.  3 root root    19 Aug 10  2020 .local
----
+***
 -rw-r--r--.  1 root root   129 Dec 28  2013 .tcshrc
 ___
 -rw-------.  1 root root  3729 Apr 10 23:01 .viminfo
